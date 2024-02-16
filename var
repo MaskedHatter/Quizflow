@@ -1,0 +1,58 @@
+extension functions
+- occlude images
+- pop up dictionary using chatgpt
+- using info in your deck to create relations to words
+- timer
+- review heat maps
+
+Variables to take note of
+- lapses : you get a graduated card wrong
+- time spent on each card
+
+
+New Card
+- steps 1 & 10mins
+- new cards/day
+- graduating interval - 1day
+- easy interval
+- starting ease% 250%
+
+press good button
+New interval = current interval * ease% (2.5) *  interval modifier
+
+Lapse
+- Steps : see lapse card in 25mins and in 4320mins 3days
+- New interval percentage : a percentage of the old interval 50%
+- minimum interval
+
+pressing again
+minus 20% from ease%
+reduce interval by 50%
+
+pressing hard
+minus 15% from ease%
+New interval = current interval * 1.2  *  1
+
+Reviewer
+- reviews per day
+- easy bonus 130% for pressing easy
+- interval modifier
+- maximum interval
+- hard interval 120%, 1.2 in presed hard
+
+pressing easy
+New interval = current interval * ease% * 1 * easy bonus
+
+isGraduated
+isNewCard
+isLapsed
+
+How missed cards are handled
+- when you meet these cards if you answer:
+easy : the full delay(time away) is added to the old interval
+good : half the delay is added to the old interval
+hard : quarter of the delay is added to the old interval
+
+new interval = (old interval + delay * option) * [1.2, 2.5, 3.25]
+
+randomizer value

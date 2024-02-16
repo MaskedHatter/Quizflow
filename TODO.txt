@@ -1,0 +1,27 @@
+Import Decks from anki support for 
+- images 0
+- audio
+- different card formats
+
+Google drive Deck syncing 
+
+Settings Page 
+
+Anki algorithim
+- add functionality to buttons
+
+Adding audio files to flashcards
+
+Audio feedback for answering cards
+
+End of Card Deck Display
+
+Card deck information display on home Page
+
+Pending Cards section 
+
+Remove Cards and Decks functionality 0
+
+Questions and Answers on the same side of the card
+
+openAi key = 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
