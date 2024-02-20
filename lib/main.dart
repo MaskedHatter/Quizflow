@@ -14,6 +14,8 @@ import 'package:quizflow/provider/page_model.dart';
 import 'package:quizflow/provider/selected_deck_model.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:quizflow/screen/display_cards_screen.dart';
+import 'package:quizflow/screen/list_screen.dart';
 import 'firebase_options.dart';
 
 late Box box;
@@ -64,11 +66,11 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark(),
-        //initialRoute: '/home',
-        // routes: <String, WidgetBuilder>{
-        //   "/home": (BuildContext context) => ListScreen(),
-        //   "/DisplayCards": (BuildContext context) => DisplayDeck(),
-        // },
+        initialRoute: '/home',
+        routes: <String, WidgetBuilder>{
+          "/home": (BuildContext context) => const ListScreen(),
+          "/DisplayCards": (BuildContext context) => DisplayDeck(),
+        },
       ),
     );
   }
