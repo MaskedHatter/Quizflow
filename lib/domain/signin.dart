@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -23,16 +25,18 @@ Future<void> signInWithGoogle(BuildContext context) async {
         await FirebaseAuth.instance.signInWithCredential(credential);
     final User? user = userCredential.user;
 
-    print(user?.displayName);
+    log("${user}");
     // Use the user object for further operations or navigate to a new screen.
+
+    //For the purpose of testing an api key is provided
     GoogleDriveHandler().setAPIKey(
-      apiKey: "AIzaSyANU2kZt_a831qLSnQLewz3k5JT4Tnummg",
+      apiKey: "AIzaSyCDQCq5zf9QQz3COaIUepuGp_ewrENe47w",
     );
 
     // File? myFile =
     //     await GoogleDriveHandler().getFileFromGoogleDrive(context: context);
-    drive.File file = drive.File();
-    file.name = "mytextfiel";
+    // drive.File file = drive.File();
+    // file.name = "mytextfiel";
 
     // if (myFile != null) {
     //   /// Do something with the file
@@ -45,6 +49,6 @@ Future<void> signInWithGoogle(BuildContext context) async {
     //   print("NOTHING");
     // }
   } catch (e) {
-    print(e.toString());
+    log(e.toString());
   }
 }

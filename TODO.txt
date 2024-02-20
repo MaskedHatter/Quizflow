@@ -24,4 +24,4 @@ Remove Cards and Decks functionality 0
 
 Questions and Answers on the same side of the card
 
-openAi key = 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
+

@@ -12,40 +12,15 @@
           "package_name": "com.example.quizflow"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "172740453920-lshmcaif76p5h3ka8l0r4pvphkkftor5.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.quizflow",
-            "certificate_hash": "cb51e3be55c0c22ae3d254a3f8aa0ba875b52767"
-          }
-        },
-        {
-          "client_id": "172740453920-l8oapjgbonjv6ef6ri1795q6heaoe4kl.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC9i2rhc5qQhaS11w1tzyJqlKsYsGUzcEA"
+          "current_key": "AIzaSyCahIWKxPa28jtw3536ZBQLS3rE8O4dYsA"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "172740453920-l8oapjgbonjv6ef6ri1795q6heaoe4kl.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "172740453920-6spa8aep00kvhp3sesftkdsrhlg1fbgb.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.quizflow.RunnerTests"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,8 +43,18 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAO1at7pE5BgicxJT-EzlAHqXT3RmdJgq8',
+    appId: '1:172740453920:web:0e491929d2a22e5d9c3e45',
+    messagingSenderId: '172740453920',
+    projectId: 'quizflow-2a62d',
+    authDomain: 'quizflow-2a62d.firebaseapp.com',
+    storageBucket: 'quizflow-2a62d.appspot.com',
+    measurementId: 'G-6KK6SZFSPQ',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC9i2rhc5qQhaS11w1tzyJqlKsYsGUzcEA',
+    apiKey: 'AIzaSyCahIWKxPa28jtw3536ZBQLS3rE8O4dYsA',
     appId: '1:172740453920:android:9dc1a9c66d3f8a009c3e45',
     messagingSenderId: '172740453920',
     projectId: 'quizflow-2a62d',
@@ -58,13 +62,20 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB7uy--2gZTGXr-7MYwm1un0ik9OQFvU1c',
+    apiKey: 'AIzaSyDQglwdE8jgzQN1IN_et-nSrFYeP1BoCkw',
     appId: '1:172740453920:ios:068964a10fe595569c3e45',
     messagingSenderId: '172740453920',
     projectId: 'quizflow-2a62d',
     storageBucket: 'quizflow-2a62d.appspot.com',
-    androidClientId: '172740453920-lshmcaif76p5h3ka8l0r4pvphkkftor5.apps.googleusercontent.com',
-    iosClientId: '172740453920-91o7mfsacmftkmmf3avaakqeijmshpc7.apps.googleusercontent.com',
     iosBundleId: 'com.example.quizflow',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyDQglwdE8jgzQN1IN_et-nSrFYeP1BoCkw',
+    appId: '1:172740453920:ios:2c2925016df0b3e59c3e45',
+    messagingSenderId: '172740453920',
+    projectId: 'quizflow-2a62d',
+    storageBucket: 'quizflow-2a62d.appspot.com',
+    iosBundleId: 'com.example.quizflow.RunnerTests',
   );
 }
