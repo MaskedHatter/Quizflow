@@ -105,7 +105,7 @@ class RootFolder extends ChangeNotifier {
     notifyListeners();
   }
 
-  int get rootLength => _items!.length;
+  int get rootLength => _items.length;
 
   // void setItemsContent () {
   //   if
@@ -123,7 +123,9 @@ class RootFolder extends ChangeNotifier {
       await HiveControl.openHive();
       rootFolder = await HiveControl.getRootDeck();
       CarddeckRegister.listOfCarddecks = await HiveControl.openAllBoxes();
-      CarddeckRegister.selectedDeck = CarddeckRegister.listOfCarddecks.last;
+      if (CarddeckRegister.listOfCarddecks.isNotEmpty) {
+        CarddeckRegister.selectedDeck = CarddeckRegister.listOfCarddecks.last;
+      }
     } else {
       log("Creating Hive...");
       await createHive();
