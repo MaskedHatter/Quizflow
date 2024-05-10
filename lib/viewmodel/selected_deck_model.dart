@@ -4,12 +4,14 @@ import 'package:quizflow/collection_types/flashcard.dart';
 
 class SelectedDeck extends ChangeNotifier {
   Carddeck? _currentDeck;
-  // TODO : set index properly set it as a variable to the class carddeeck
 
   Carddeck get selectedDeck => _currentDeck!;
+
   List<Flashcard> get selectedDeckCards =>
       _currentDeck!.flashcards!.cast<Flashcard>();
+
   int get currentIndex => _currentDeck!.lastIndexReached;
+
   int get noOfQuestions => _currentDeck!.flashcards!.length;
 
   void changeWrongNo() {

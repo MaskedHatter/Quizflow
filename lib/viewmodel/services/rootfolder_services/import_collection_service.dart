@@ -1,6 +1,6 @@
-part of 'package:quizflow/provider/root_folder_model.dart';
+part of 'package:quizflow/viewmodel/root_folder_viewmodel.dart';
 
-extension ImportDeck on RootFolder {
+extension ImportCollectionService on RootFolderViewModel {
   String? getKeyByValue(Map<String, dynamic> map, String targetValue) {
     for (var entry in map.entries) {
       if (entry.value == targetValue) {
@@ -65,9 +65,8 @@ extension ImportDeck on RootFolder {
       answer = answerStruct.join(" ");
       question = questStruct.join(" ");
     }
-    answer = answer
-        .replaceFirst(question, '')
-        .replaceAll(RegExp(r'[^\x20-\x7E]'), '');
+
+    answer = answer.replaceAll(RegExp(r'[^\x20-\x7E]'), '');
     answer = answer.replaceAll("<br>", '');
     // answer = answer.replaceAll(
     //RegExp(r'[^\w\s!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~]'), "");
@@ -219,20 +218,6 @@ extension ImportDeck on RootFolder {
         intervalModifier: 1,
       );
       return deck;
-    }
-  }
-
-  Future<void> storeImport(List<CollectionTypes> listCollection) async {
-    for (var collection in listCollection) {
-      if (collection is Folder) {
-        for (var childCollection in collection.subItemsRaw) {
-          await storeImportedCollection(collection);
-          await storeImport(collection.subItemsRaw);
-        }
-        if (collection.folderLevel == 1) {
-          await storeImportedCollection(rootFolder);
-        }
-      }
     }
   }
 }

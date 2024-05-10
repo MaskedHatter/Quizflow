@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/drive/v3.dart' as drive;
-import 'package:quizflow/service/googl_sign_in/src/googledrivehandler_functions.dart';
+import 'package:quizflow/viewmodel/services/googl_sign_in/src/googledrivehandler_functions.dart';
 
 Future<void> signInWithGoogle(BuildContext context) async {
   final GoogleSignIn googleSignIn =

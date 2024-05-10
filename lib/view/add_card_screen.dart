@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:quizflow/provider/add_card_model.dart';
+import 'package:quizflow/viewmodel/add_card_model.dart';
 import 'package:quizflow/widgets/add_screen_widgets/input_field.dart';
 
 class AddCard extends StatelessWidget {
@@ -11,10 +12,10 @@ class AddCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int textFieldLines = (MediaQuery.of(context).size.width ~/ 53); //59
+    final int textFieldLines = 1.sh ~/ (1.sh * 0.15); //59
     if (context.read<AddCardModel>().getSelectedDeck == null) {
-      return const Center(
-        child: Text("No Card Deck", style: TextStyle(fontSize: 30)),
+      return Center(
+        child: Text("No Card Deck", style: TextStyle(fontSize: 30.sp)),
       );
     }
     return Center(
@@ -23,22 +24,23 @@ class AddCard extends StatelessWidget {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(10, 0, 15, 15),
+              padding: EdgeInsets.fromLTRB(10, 0, 15.w, 15.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
                     child: Text(
                       "Deck",
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 18.sp,
                       ),
                     ),
                   ),
                   DropdownMenu(
-                      textStyle: const TextStyle(fontSize: 14),
+                      textStyle: TextStyle(fontSize: 14.sp),
                       onSelected: (deck) {
                         if (deck != null) {
                           context.read<AddCardModel>().selectDeck(deck);
@@ -46,7 +48,7 @@ class AddCard extends StatelessWidget {
                       },
                       initialSelection:
                           context.watch<AddCardModel>().getSelectedDeck,
-                      width: MediaQuery.of(context).size.width - 50,
+                      width: 1.sw - 50,
                       dropdownMenuEntries: context
                           .watch<AddCardModel>()
                           .deckOptions
@@ -54,9 +56,9 @@ class AddCard extends StatelessWidget {
                         return DropdownMenuEntry(
                             value: carddeck,
                             label: carddeck.title,
-                            style: const ButtonStyle(
+                            style: ButtonStyle(
                                 textStyle: MaterialStatePropertyAll(
-                                    TextStyle(fontSize: 16))));
+                                    TextStyle(fontSize: 16.sp))));
                       }).toList()),
                 ],
               ),
@@ -72,17 +74,17 @@ class AddCard extends StatelessWidget {
                 controller: backController,
                 lines: textFieldLines),
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              padding: EdgeInsets.fromLTRB(0, 10.h, 0, 10.h),
               child: ElevatedButton(
                   onPressed: () {
                     context
                         .read<AddCardModel>()
                         .createCard(context, frontController, backController);
                   },
-                  child: const Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 15.0, horizontal: 40),
-                    child: Text("Add"),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical: 15.0.h, horizontal: 40.w),
+                    child: const Text("Add"),
                   )),
             )
           ]),

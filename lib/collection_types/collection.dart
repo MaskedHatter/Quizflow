@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-import 'package:quizflow/provider/hive_model.dart';
 
 part 'collection.g.dart';
 

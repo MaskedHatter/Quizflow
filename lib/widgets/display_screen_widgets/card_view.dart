@@ -5,6 +5,7 @@ import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizflow/collection_types/flashcard.dart';
 import 'package:quizflow/widgets/display_screen_widgets/row_of_buttons.dart';
 
@@ -34,28 +35,28 @@ class _CardViewState extends State<CardView> {
         ? widget.card.cardFrontComponents
         : [
             ...widget.card.cardFrontComponents,
-            const SizedBox(
-              child: Divider(height: 40),
+            SizedBox(
+              child: Divider(height: 40.h),
             ),
             ...widget.card.cardBackcomponents
           ];
 
-    double bottomTextMargin = widget.frontSide ? 75 : 120;
+    double bottomTextMargin = widget.frontSide ? 75.h : 120.h;
 
     return GestureDetector(
       onLongPress: () => showDialog<String>(
         context: context,
         builder: (BuildContext context) => CupertinoAlertDialog(
           content: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0.w),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text("Card Interval: ${widget.card.currentInterval.inMinutes}"),
-                const SizedBox(height: 15),
+                SizedBox(height: 15.h),
                 Text("Ease Factor: ${widget.card.easeFactor}"),
-                const SizedBox(height: 15),
+                SizedBox(height: 15.h),
                 Text("Card State: ${widget.card.cardState}"),
               ],
             ),
@@ -71,13 +72,12 @@ class _CardViewState extends State<CardView> {
         ),
       ),
       child: Container(
-        padding: const EdgeInsets.all(0),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: Color.fromARGB(255, 36, 36, 36),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20.r)),
+          color: const Color.fromARGB(255, 36, 36, 36),
         ),
         alignment: Alignment.center,
-        margin: const EdgeInsets.fromLTRB(0, 40, 0, 0),
+        margin: EdgeInsets.fromLTRB(0, 40.h, 0, 0),
         child: Stack(children: [
           (componentDisplay.any((item) {
             if (item is String) {
@@ -91,7 +91,7 @@ class _CardViewState extends State<CardView> {
                   padding: EdgeInsets.fromLTRB(0, 0, 0, bottomTextMargin),
                   child: ClipRRect(
                     borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(15)),
+                        BorderRadius.vertical(top: Radius.circular(15.r)),
                     child: SingleChildScrollView(
                       controller: scrollController,
                       child: Column(
@@ -106,8 +106,8 @@ class _CardViewState extends State<CardView> {
                 )
               : componentDisplay.isNotEmpty
                   ? Padding(
-                      padding:
-                          EdgeInsets.fromLTRB(12, 12, 12, bottomTextMargin),
+                      padding: EdgeInsets.fromLTRB(
+                          12.w, 12.h, 12.w, bottomTextMargin),
                       child: SingleChildScrollView(
                         controller: scrollController,
                         child: Column(
@@ -135,12 +135,12 @@ displayText(components) {
       if (text is String) {
         return Center(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0.w),
             child: Text(
               text,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 17,
+              style: TextStyle(
+                fontSize: 17.sp,
               ),
             ),
           ),
@@ -152,12 +152,12 @@ displayText(components) {
   } else {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8.0.w),
         child: Text(
           components,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 17,
+          style: TextStyle(
+            fontSize: 17.sp,
           ),
         ),
       ),
@@ -166,7 +166,7 @@ displayText(components) {
 }
 
 MaterialStateProperty<Size> buttonSize = MaterialStateProperty.all<Size>(
-  const Size(400, 600),
+  Size(400.w, 600.h),
 );
 
 List<Widget> componentOrganizer(List components) {
@@ -176,17 +176,14 @@ List<Widget> componentOrganizer(List components) {
     }
     if (item.contains("</img/>")) {
       item = item.replaceFirst("</img/>", "");
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-        child: ClipRRect(
-            borderRadius: BorderRadius.vertical(
-                top: Radius.circular((components.indexOf(item) == 0) ? 15 : 0)),
-            child: Image(image: FileImage(File(item)))),
-      );
+      return ClipRRect(
+          borderRadius: BorderRadius.vertical(
+              top: Radius.circular((components.indexOf(item) == 0) ? 15.r : 0)),
+          child: Image(image: FileImage(File(item))));
     } else {
       log(item);
       var value = Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8),
+        padding: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 8.w),
         child: displayText(item),
       );
       return value;

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:quizflow/collection_types/card_deck.dart';
-import 'package:quizflow/provider/selected_deck_model.dart';
+import 'package:quizflow/viewmodel/selected_deck_model.dart';
 
 class CarddeckTile extends StatelessWidget {
   final Carddeck? item;
@@ -29,13 +30,13 @@ class CarddeckTile extends StatelessWidget {
               }
             },
             onLongPress: () {},
-            leading: const Icon(Icons.flip_to_front, size: 22),
+            leading: Icon(Icons.flip_to_front, size: 21.w),
             title: Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Text(item!.title),
             ),
             subtitle: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: EdgeInsets.all(4.0.w),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [Text("$noOfQuestions")]),
@@ -43,7 +44,7 @@ class CarddeckTile extends StatelessWidget {
             isThreeLine: true,
           ),
         ),
-        const SizedBox(height: 12)
+        SizedBox(height: 12.h)
       ],
     );
   }

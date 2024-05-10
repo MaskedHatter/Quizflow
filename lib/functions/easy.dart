@@ -1,6 +1,6 @@
 import 'package:quizflow/collection_types/flashcard.dart';
 import 'package:quizflow/functions/grade_button_action.dart';
-import 'package:quizflow/provider/settings_model.dart';
+import 'package:quizflow/viewmodel/settings_model.dart';
 
 class Easy implements GradeButtonAction {
   @override

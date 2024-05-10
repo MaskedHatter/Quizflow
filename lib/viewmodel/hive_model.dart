@@ -1,14 +1,11 @@
 import 'dart:developer';
-
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:quizflow/collection_types/card_deck.dart';
-import 'package:quizflow/collection_types/card_deck_register.dart';
 import 'package:quizflow/collection_types/collection.dart';
 import 'package:quizflow/collection_types/flashcard.dart';
 import 'package:quizflow/collection_types/folder.dart';
-import 'package:quizflow/main.dart';
-import 'package:quizflow/provider/root_folder_model.dart';
+import 'package:quizflow/viewmodel/root_folder_viewmodel.dart';
 
 class HiveControl {
   static Box? boxStorage;
@@ -16,24 +13,23 @@ class HiveControl {
   static List<String> boxNames = [];
 
   static Future<void> registerHive() async {
+    // Initializes hive and registers hive adapters
     log("registering adapters...");
+
     String path = (await getApplicationDocumentsDirectory()).path;
     await Hive.initFlutter(path);
+
     Hive.registerAdapter<CollectionTypes>(CollectionTypesAdapter());
     Hive.registerAdapter<Folder>(FolderAdapter());
     Hive.registerAdapter<Flashcard>(FlashcardAdapter());
     Hive.registerAdapter<Duration>(DurationAdapter());
     Hive.registerAdapter<Carddeck>(CarddeckAdapter());
-    //Hive.registerAdapter<CarddeckRegister>(CarddeckRegisterAdapter());
-    //await Hive.deleteBoxFromDisk("Box");
+
     if (Hive.isAdapterRegistered(1)) {
       log("Carddeck is registered");
     }
     if (Hive.isAdapterRegistered(2)) {
       log("Folder is registered");
-    }
-    if (Hive.isAdapterRegistered(3)) {
-      log("CarddeckReg is registered");
     }
     if (Hive.isAdapterRegistered(0)) {
       log("Flashcard is registered");
@@ -45,16 +41,17 @@ class HiveControl {
   }
 
   static Future<void> createHive() async {
-    // Bring the box creation outside of this class
+    // Creates the root box for the first time
     bool boxExists = await doesHiveExist();
     if (!boxExists) {
       boxStorage = await openBox("Box");
       log("created");
-      storeRootDeck(RootFolder().rootFolder);
+      storeRootDeck(RootFolderViewModel().rootFolder);
     }
   }
 
   static Future<void> openHive() async {
+    // Opens up the Rootbox and gets the list of subBox names
     boxStorage = await openBox("Box");
     boxNames = await boxStorage!.get("boxnames");
   }

@@ -1,19 +1,16 @@
-import 'dart:developer';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:langchain/langchain.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:quizflow/collection_types/collection.dart';
-import 'package:quizflow/provider/hive_model.dart';
-import 'package:quizflow/screen/add_card_screen.dart';
+import 'package:quizflow/view/add_card_screen.dart';
 import 'package:quizflow/collection_types/card_deck.dart';
 import 'package:quizflow/collection_types/folder.dart';
-import 'package:quizflow/provider/page_model.dart';
-import 'package:quizflow/provider/root_folder_model.dart';
-import 'package:quizflow/screen/settings_screen.dart';
+import 'package:quizflow/viewmodel/page_model.dart';
+import 'package:quizflow/viewmodel/root_folder_viewmodel.dart';
+import 'package:quizflow/view/settings_screen.dart';
 import 'package:quizflow/widgets/list_screen_widgets/carddeck_tile.dart';
 import 'package:quizflow/widgets/list_screen_widgets/folder_tile.dart';
 import 'package:quizflow/widgets/list_screen_widgets/list_screen_appbar.dart';
@@ -31,6 +28,8 @@ class _ListScreenState extends State<ListScreen> {
 
   final TextEditingController controller = TextEditingController();
 
+  final PageController pageController = PageController();
+
   // Main Build Method for ListScreen
   @override
   Widget build(BuildContext context) {
@@ -45,22 +44,40 @@ class _ListScreenState extends State<ListScreen> {
               : Size.zero,
           child: const ListScreenAppbar(),
         ),
-        body: [
-          ListView(children: [
-            ...buildListItems(
-                context, context.watch<RootFolder>().rootDeckContent()!),
-            const SizedBox(
-              height: 70,
-            )
-          ]),
-          AddCard(),
-          const Settings()
-        ][context.watch<PageModel>().pageIndex],
+        body: PageView(
+          allowImplicitScrolling: false,
+          onPageChanged: (index) {
+            context.read<PageModel>().changePageIndex(index);
+          },
+          controller: pageController,
+          children: [
+            ListView(children: [
+              ...buildListItems(context,
+                  context.watch<RootFolderViewModel>().rootDeckContent()!),
+              SizedBox(
+                height: 70.h,
+              )
+            ]),
+            AddCard(),
+            const Settings()
+          ],
+        ),
+        // [
+        //   ListView(children: [
+        //     ...buildListItems(context,
+        //         context.watch<RootFolderViewModel>().rootDeckContent()!),
+        //     const SizedBox(
+        //       height: 70,
+        //     )
+        //   ]),
+        //   AddCard(),
+        //   const Settings()
+        // ][context.watch<PageModel>().pageIndex],
         floatingActionButton: context.watch<PageModel>().pageIndex == 0
             ? FloatingActionButton(
                 onPressed: () {
                   context
-                      .read<RootFolder>()
+                      .read<RootFolderViewModel>()
                       .showTypeDialogue(true, scaffoldKey, controller);
 
                   // var box = Hive.box("Box");
@@ -71,9 +88,10 @@ class _ListScreenState extends State<ListScreen> {
               )
             : Container(),
         bottomNavigationBar: NavigationBar(
-          height: context.watch<PageModel>().pageIndex != 1 ? 70 : 70,
+          height: 67.h,
           onDestinationSelected: (int index) {
             context.read<PageModel>().changePageIndex(index);
+            pageController.jumpToPage(index);
           },
           selectedIndex: context.watch<PageModel>().pageIndex,
           destinations: const <Widget>[
@@ -106,7 +124,7 @@ class _ListScreenState extends State<ListScreen> {
       if (item is Folder) {
         return Padding(
           key: UniqueKey(),
-          padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+          padding: EdgeInsets.fromLTRB(5.w, 0, 0, 0),
           child: FolderTile(
               textController: controller,
               item: item,
@@ -115,7 +133,8 @@ class _ListScreenState extends State<ListScreen> {
         );
       } else if (item is Carddeck) {
         return Padding(
-          padding: EdgeInsets.fromLTRB(15 + (10 * item.folderLevel), 0, 15, 0),
+          padding:
+              EdgeInsets.fromLTRB(15.w + (10.w * item.folderLevel), 0, 15.w, 0),
           child:
               CarddeckTile(item: item, noOfQuestions: item.getNoOfQuestions()),
         );

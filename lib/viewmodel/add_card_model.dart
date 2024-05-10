@@ -24,8 +24,8 @@ class AddCardModel extends ChangeNotifier {
 
   void createCard(BuildContext context, TextEditingController front,
       TextEditingController back) {
-    Flashcard newCard =
-        Flashcard(questionText: front.text, questionAnswer: back.text);
+    Flashcard newCard = Flashcard(
+        questionText: front.text ?? " ", questionAnswer: back.text ?? " ");
     front.clear();
     back.clear();
     _selectedDeck!.addCard(newCard);

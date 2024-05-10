@@ -1,12 +1,12 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:quizflow/domain/signin.dart';
-import 'package:quizflow/provider/page_model.dart';
-import 'package:quizflow/provider/root_folder_model.dart';
+import 'package:quizflow/viewmodel/page_model.dart';
+import 'package:quizflow/viewmodel/root_folder_viewmodel.dart';
 
 class ListScreenAppbar extends StatelessWidget {
   //final Function signInWithGoogle;
@@ -16,23 +16,27 @@ class ListScreenAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return context.watch<PageModel>().pageIndex == 0
         ? AppBar(
-            title: const Padding(
-              padding: EdgeInsets.fromLTRB(5, 0, 0, 00),
-              child: Text("QuizFlow",
-                  style: TextStyle(
-                    //fontWeight: FontWeight.bold,
-                    //fontSize: 18,
-                    fontFamily: "Exo",
-                    color: Color.fromARGB(255, 255, 255, 255),
-                  )),
+            title: Padding(
+              padding: EdgeInsets.fromLTRB(5.w, 0, 0, 00),
+              child: const Column(
+                children: [
+                  Text("QuizFlow",
+                      style: TextStyle(
+                        //fontWeight: FontWeight.bold,
+                        //fontSize: 18,
+                        fontFamily: "Exo",
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      )),
+                ],
+              ),
             ),
             scrolledUnderElevation: 0,
             actions: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                 child: IconButton(
                     onPressed: () async {
-                      //await signInWithGoogle(context);
+                      await signInWithGoogle(context);
                       //LangChainService langchain = LangChainService();
                       //final docs = await fetchDocuments();
                       // await langchain.uploadToPineconeIndex(docs);
@@ -41,19 +45,17 @@ class ListScreenAppbar extends StatelessWidget {
                       // print(
                       //     "#############################################");
                       // print(result);
-                      delete();
-                      context.read<RootFolder>().clearFolder();
+                      //delete();
+                      //context.read<RootFolderViewModel>().clearFolder();
                     },
                     icon: const Icon(Icons.storage)),
               )
             ],
           )
-        : PreferredSize(
-            preferredSize: const Size.fromHeight(0),
-            child: AppBar(
-              elevation: 0,
-              scrolledUnderElevation: 0,
-            ));
+        : AppBar(
+            elevation: 0,
+            scrolledUnderElevation: 0,
+          );
   }
 }
 

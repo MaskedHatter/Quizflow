@@ -5,8 +5,8 @@ import 'package:quizflow/collection_types/card_deck_register.dart';
 import 'package:quizflow/collection_types/collection.dart';
 import 'package:quizflow/collection_types/flashcard.dart';
 import 'package:quizflow/collection_types/folder.dart';
-import 'package:quizflow/provider/hive_model.dart';
-import 'package:quizflow/provider/settings_model.dart';
+import 'package:quizflow/viewmodel/hive_model.dart';
+import 'package:quizflow/viewmodel/settings_model.dart';
 
 part 'card_deck.g.dart';
 
@@ -115,15 +115,9 @@ class Carddeck extends CollectionTypes {
     ///setUpBox(flashcards!);
   }
 
-  // int noOfQuestions() {
-  //   return noOfQuestionsCorrect + noOfQuestionsUnseen + noOfQuestionsWrong;
-  // }
-
   void addCard(Flashcard item) async {
     item.parentDeck = this;
     noOfQuestions++;
-    //Box parentbox = await HiveControl.openBox(parent!.boxId!);
-    //parentbox.add(this);
     Box box = await HiveControl.openBox(boxId!);
     await box.add(item);
     flashcards!.add(item);

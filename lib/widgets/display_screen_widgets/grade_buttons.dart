@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizflow/collection_types/flashcard.dart';
 import 'package:quizflow/functions/again.dart';
 import 'package:quizflow/functions/easy.dart';
@@ -90,7 +91,7 @@ class GradeButton extends StatelessWidget {
               ),
             ),
             padding: MaterialStateProperty.all(
-                const EdgeInsets.symmetric(vertical: 15, horizontal: 0)),
+                EdgeInsets.symmetric(vertical: 15.h, horizontal: 0)),
           ),
           child: Text(
             isNo == 3
@@ -102,9 +103,9 @@ class GradeButton extends StatelessWidget {
                         : "Hard",
             style: TextStyle(
                 color: isNo == 3
-                    ? Color.fromARGB(198, 50, 248, 15)
+                    ? const Color.fromARGB(198, 50, 248, 15)
                     : isNo == 1
-                        ? Color.fromARGB(197, 245, 22, 22)
+                        ? const Color.fromARGB(197, 245, 22, 22)
                         : isNo == 4
                             ? Colors.blue
                             : Colors.white),

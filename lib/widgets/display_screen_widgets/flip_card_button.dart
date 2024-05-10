@@ -1,5 +1,6 @@
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FlipCardButton extends StatelessWidget {
   final bool isFront;
@@ -13,29 +14,29 @@ class FlipCardButton extends StatelessWidget {
         style: ButtonStyle(
           elevation: const MaterialStatePropertyAll(3),
           shape: MaterialStateProperty.all(
-            const RoundedRectangleBorder(
+            RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.zero,
                   topRight: Radius.zero,
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20)),
+                  bottomLeft: Radius.circular(20.r),
+                  bottomRight: Radius.circular(20.r)),
             ),
           ),
           padding: MaterialStateProperty.all(
-              const EdgeInsets.symmetric(vertical: 15, horizontal: 0)),
+              EdgeInsets.symmetric(vertical: 15.h, horizontal: 0)),
         ),
         onPressed: () {
           flipCardController.toggleCard();
         },
         child: isFront
-            ? const Icon(
-                Icons.loop_rounded, size: 30, //color: Colors.white
+            ? Icon(
+                Icons.loop_rounded, size: 30.w, //color: Colors.white
               )
-            : const RotatedBox(
+            : RotatedBox(
                 quarterTurns: 1,
                 //manualTrigger: true,
                 child: Icon(
-                  Icons.loop_rounded, size: 30, //color: Colors.white
+                  Icons.loop_rounded, size: 30.w, //color: Colors.white
                 ),
               ));
   }

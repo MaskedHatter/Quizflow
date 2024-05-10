@@ -1,11 +1,8 @@
 import 'dart:math';
-import 'dart:developer' as dev;
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:quizflow/collection_types/card_deck.dart';
 import 'package:quizflow/collection_types/collection.dart';
-import 'package:quizflow/provider/hive_model.dart';
 
 part 'folder.g.dart';
 
@@ -85,10 +82,6 @@ class Folder extends CollectionTypes {
     }
     subItems!.add(item);
   }
-
-  // void addGroupItem(itemList) {
-  //   subItems = [...itemList];
-  // }
 
   void remove(List<CollectionTypes> listItem) {
     listItem.remove(this);

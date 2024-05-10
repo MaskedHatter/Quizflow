@@ -1,9 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:quizflow/collection_types/folder.dart';
-import 'package:quizflow/provider/root_folder_model.dart';
+import 'package:quizflow/viewmodel/root_folder_viewmodel.dart';
 
 class FolderTile extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -68,12 +69,12 @@ class _FolderTileState extends State<FolderTile>
 
             onExpansionChanged: (bool expanded) {
               context
-                  .read<RootFolder>()
+                  .read<RootFolderViewModel>()
                   .setExpansionforFolder(widget.item, expanded);
             },
             leading: Padding(
               padding: EdgeInsets.fromLTRB(
-                  0 + (10 * widget.item.folderLevel), 0, 0, 0),
+                  0 + (10.w * widget.item.folderLevel), 0, 0, 0),
               child: widget.item.isExpanded
                   ? const Icon(Icons.keyboard_arrow_down_rounded)
                   : const Icon(Icons.keyboard_arrow_right_rounded),
@@ -82,17 +83,17 @@ class _FolderTileState extends State<FolderTile>
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
                   minimumSize: MaterialStateProperty.all<Size>(
-                    const Size(35.0, 35.0),
+                    Size(31.0.w, 33.0.h),
                   ),
                 ),
                 onPressed: () {
                   if (deleteMode) {
-                    context.read<RootFolder>().removeItem(widget.item);
+                    context.read<RootFolderViewModel>().removeItem(widget.item);
                     // setState(() {
                     //   deleteMode = false;
                     // });
                   } else {
-                    context.read<RootFolder>().showTypeDialogue(false,
+                    context.read<RootFolderViewModel>().showTypeDialogue(false,
                         widget.scaffoldKey, widget.textController, widget.item);
                   }
                 },
@@ -115,16 +116,16 @@ class _FolderTileState extends State<FolderTile>
             //controlAffinity: ListTileControlAffinity.leading,
             children: <Widget>[
               ...widget.buildListItems(context, widget.item.subItems),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
                 // child: Divider(
                 //   thickness: 3,
                 // ),
               )
             ],
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: 10.h,
             // child: Divider(
             //   thickness: 3,
             // ),

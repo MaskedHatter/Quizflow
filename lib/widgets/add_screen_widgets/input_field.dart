@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:quizflow/provider/add_card_model.dart';
+import 'package:quizflow/viewmodel/add_card_model.dart';
 
 class InputField extends StatelessWidget {
   const InputField({
@@ -19,36 +20,36 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(25, 0, 25, 10),
+      padding: EdgeInsets.fromLTRB(25.w, 0, 25.w, 10.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+            padding: EdgeInsets.fromLTRB(8.w, 0, 8.w, 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   label,
                   textAlign: TextAlign.left,
-                  style: const TextStyle(
-                    fontSize: 18,
+                  style: TextStyle(
+                    fontSize: 18.sp,
                   ),
                 ),
                 IconButton(
                     onPressed: () {
                       context.read<AddCardModel>().importImage(controller);
                     },
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.image_outlined,
-                      size: 26,
+                      size: 26.w,
                     ))
               ],
             ),
           ),
           TextField(
             textAlign: TextAlign.left,
-            style: const TextStyle(fontSize: 14),
+            style: TextStyle(fontSize: 14.sp),
             minLines: lines,
             maxLines: 100,
             controller: controller,

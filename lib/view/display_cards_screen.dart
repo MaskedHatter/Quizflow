@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:quizflow/audio_control.dart';
-import 'package:quizflow/provider/selected_deck_model.dart';
+import 'package:quizflow/viewmodel/selected_deck_model.dart';
 import 'package:quizflow/widgets/display_screen_widgets/card_view.dart';
 import '../collection_types/flashcard.dart';
 //import 'package:animate_do/animate_do.dart';
@@ -64,7 +65,7 @@ class DisplayDeck extends StatelessWidget {
                 duration: const Duration(milliseconds: 600),
                 numberOfCardsDisplayed:
                     context.watch<SelectedDeck>().noOfQuestions == 1 ? 1 : 2,
-                padding: const EdgeInsets.fromLTRB(17, 21, 17, 17),
+                padding: EdgeInsets.fromLTRB(17.w, 21.h, 17.w, 17.h),
                 backCardOffset: Offset.zero,
                 onSwipe: (previousIndex, currentIndex, direction) {
                   if (!flipController.state!.isFront) {
@@ -90,7 +91,7 @@ class DisplayDeck extends StatelessWidget {
                 }),
             Container(
                 alignment: Alignment.topCenter,
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                padding: EdgeInsets.fromLTRB(0, 20.h, 0, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

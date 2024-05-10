@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
@@ -9,8 +10,8 @@ class Settings extends StatelessWidget {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            title: const Padding(
-              padding: EdgeInsets.all(8.0),
+            title: Padding(
+              padding: EdgeInsets.all(8.0.w),
               child: Text("Settings"),
             ),
             bottom: const TabBar(tabs: [
@@ -68,15 +69,15 @@ class Settings extends StatelessWidget {
 
 Widget settingOption(String label, String defaultValue) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+    padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 10.h),
     child: Column(
       children: [
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding: EdgeInsets.symmetric(vertical: 8.0.h),
             child: Text(
               label,
-              style: const TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16.sp),
             ),
           ),
 
@@ -84,7 +85,7 @@ Widget settingOption(String label, String defaultValue) {
           Container(
             child: TextField(
               textAlign: TextAlign.left,
-              style: const TextStyle(fontSize: 14),
+              style: TextStyle(fontSize: 14.sp),
               decoration: InputDecoration(
                 hintText: defaultValue,
                 border: const OutlineInputBorder(

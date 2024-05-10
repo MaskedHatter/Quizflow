@@ -1,10 +1,7 @@
-import 'dart:io';
-
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:quizflow/collection_types/card_deck.dart';
 import 'package:quizflow/collection_types/collection.dart';
-import 'package:quizflow/provider/settings_model.dart';
+import 'package:quizflow/viewmodel/settings_model.dart';
 import 'package:time/time.dart';
 part 'flashcard.g.dart';
 part 'duration.g.dart';
